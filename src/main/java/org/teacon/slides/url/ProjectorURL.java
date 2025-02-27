@@ -22,6 +22,10 @@ public final class ProjectorURL {
     private static final ImmutableSet<String> ALLOWED_SCHEMES = ImmutableSet.of("http", "https");
     private static final String NOT_ALLOWED_SCHEME = "the url scheme is neither http nor https";
 
+    public static int CACHE_REFRESH_COUNTER = 0;
+
+    public static final String PARAMETER_ARG = "?t=";
+
     static {
         OPTIONAL_STREAM_CODEC = ByteBufCodecs.STRING_UTF8.map(str -> {
             if (str.isEmpty()) {

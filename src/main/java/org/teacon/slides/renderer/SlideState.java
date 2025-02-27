@@ -57,11 +57,11 @@ public final class SlideState {
     private static final Map<UUID, IntList> sOpeningSlotIds = new LinkedHashMap<>();
     private static final Object2ObjectMap<UUID, ProjectorURL> sIdWithImage = new Object2ObjectOpenHashMap<>();
 
-    private static final int RECYCLE_SECONDS = 120; // 2min
+    private static final int RECYCLE_SECONDS = 60; // 60s
     private static final int RETRY_INTERVAL_SECONDS = 30; // 30s
     private static long sAnimationTick = 0L;
 
-    private static final int CLEANER_INTERVAL_SECONDS = 720; // 12min
+    private static final int CLEANER_INTERVAL_SECONDS = 5 * 60; // 5min
     private static int sCleanerTimer = 0;
 
     private static final AtomicReference<ConcurrentHashMap<ProjectorURL, SlideState>> sCache;
@@ -220,8 +220,10 @@ public final class SlideState {
 
     private void refresh(ProjectorURL location) {
         var requestCounter = mRequestCounter;
+        var effectiveLocation = new ProjectorURL(location.toUrl().toASCIIString() + ProjectorURL.PARAMETER_ARG + ProjectorURL.CACHE_REFRESH_COUNTER++);
+        SlideShow.LOGGER.info("Refreshing with location : {}" + effectiveLocation);
         ImageCache.getInstance()
-                .getResource(location.toUrl(), true)
+                .getResource(effectiveLocation.toUrl(), true)
                 .thenCompose(SlideState::createTexture)
                 .whenCompleteAsync((textureProvider, throwable) -> {
                     if (requestCounter == mRequestCounter) {
