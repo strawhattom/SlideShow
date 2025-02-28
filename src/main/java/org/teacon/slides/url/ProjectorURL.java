@@ -1,15 +1,11 @@
 package org.teacon.slides.url;
 
 import com.google.common.collect.ImmutableSet;
-import io.netty.buffer.ByteBuf;
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.network.codec.ByteBufCodecs;
-import net.minecraft.network.codec.StreamCodec;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.net.URI;
-import java.util.Optional;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -17,28 +13,8 @@ import static com.google.common.base.Preconditions.checkArgument;
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 public final class ProjectorURL {
-    public static final StreamCodec<ByteBuf, Optional<ProjectorURL>> OPTIONAL_STREAM_CODEC;
-
     private static final ImmutableSet<String> ALLOWED_SCHEMES = ImmutableSet.of("http", "https");
     private static final String NOT_ALLOWED_SCHEME = "the url scheme is neither http nor https";
-
-    public static int CACHE_REFRESH_COUNTER = 0;
-
-    public static final String PARAMETER_ARG = "?t=";
-
-    static {
-        OPTIONAL_STREAM_CODEC = ByteBufCodecs.STRING_UTF8.map(str -> {
-            if (str.isEmpty()) {
-                return Optional.empty();
-            }
-            return Optional.of(new ProjectorURL(str));
-        }, opt -> {
-            if (opt.isPresent()) {
-                return opt.get().toUrl().toString();
-            }
-            return "";
-        });
-    }
 
     private final String urlString;
     private final URI urlObject;
@@ -69,7 +45,7 @@ public final class ProjectorURL {
     }
 
     public enum Status {
-        UNKNOWN, BLOCKED, ALLOWED;
+        BLOCKED, ALLOWED, UNKNOWN;
 
         public boolean isBlocked() {
             return this == BLOCKED;

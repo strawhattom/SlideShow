@@ -6,13 +6,13 @@ import net.minecraft.commands.CommandSource;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.rcon.RconConsoleSource;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.server.permission.PermissionAPI;
-import net.neoforged.neoforge.server.permission.events.PermissionGatherEvent;
-import net.neoforged.neoforge.server.permission.nodes.PermissionDynamicContext;
-import net.neoforged.neoforge.server.permission.nodes.PermissionNode;
-import net.neoforged.neoforge.server.permission.nodes.PermissionTypes;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.server.permission.PermissionAPI;
+import net.minecraftforge.server.permission.events.PermissionGatherEvent;
+import net.minecraftforge.server.permission.nodes.PermissionDynamicContext;
+import net.minecraftforge.server.permission.nodes.PermissionNode;
+import net.minecraftforge.server.permission.nodes.PermissionTypes;
 import org.teacon.slides.SlideShow;
 
 import javax.annotation.Nullable;
@@ -23,10 +23,9 @@ import java.util.UUID;
 @FieldsAreNonnullByDefault
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-@EventBusSubscriber(bus = EventBusSubscriber.Bus.GAME)
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public final class SlidePermission {
     private static @Nullable PermissionNode<Boolean> INTERACT_CREATE_PERM;
-    private static @Nullable PermissionNode<Boolean> INTERACT_EDIT_PERM;
     private static @Nullable PermissionNode<Boolean> INTERACT_PERM;
     private static @Nullable PermissionNode<Boolean> LIST_PERM;
     private static @Nullable PermissionNode<Boolean> BLOCK_PERM;
@@ -39,8 +38,6 @@ public final class SlidePermission {
                 "interact.projector", PermissionTypes.BOOLEAN, SlidePermission::everyone));
         event.addNodes(INTERACT_CREATE_PERM = new PermissionNode<>(SlideShow.ID,
                 "interact.projector.create_url", PermissionTypes.BOOLEAN, SlidePermission::everyone));
-        event.addNodes(INTERACT_EDIT_PERM = new PermissionNode<>(SlideShow.ID,
-                "interact.projector.edit_slide", PermissionTypes.BOOLEAN, SlidePermission::everyone));
         event.addNodes(LIST_PERM = new PermissionNode<>(SlideShow.ID,
                 "interact_url.list", PermissionTypes.BOOLEAN, SlidePermission::operator));
         event.addNodes(BLOCK_PERM = new PermissionNode<>(SlideShow.ID,
@@ -59,13 +56,6 @@ public final class SlidePermission {
     public static boolean canInteractCreateUrl(@Nullable CommandSource source) {
         if (source instanceof ServerPlayer serverPlayer) {
             return PermissionAPI.getPermission(serverPlayer, Objects.requireNonNull(INTERACT_CREATE_PERM));
-        }
-        return false;
-    }
-
-    public static boolean canInteractEditSlide(@Nullable CommandSource source) {
-        if (source instanceof ServerPlayer serverPlayer) {
-            return PermissionAPI.getPermission(serverPlayer, Objects.requireNonNull(INTERACT_EDIT_PERM));
         }
         return false;
     }

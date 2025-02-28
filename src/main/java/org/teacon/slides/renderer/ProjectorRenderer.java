@@ -13,13 +13,13 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.phys.AABB;
-import net.neoforged.neoforge.client.model.data.ModelData;
-import org.joml.Vector2d;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraftforge.client.model.data.ModelData;
+import org.joml.Matrix3f;
+import org.joml.Matrix4f;
 import org.teacon.slides.ModRegistries;
-import org.teacon.slides.block.ProjectorBlock;
-import org.teacon.slides.block.ProjectorBlockEntity;
-import org.teacon.slides.item.SlideItem;
+import org.teacon.slides.projector.ProjectorBlock;
+import org.teacon.slides.projector.ProjectorBlockEntity;
 import org.teacon.slides.slide.IconSlide;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -37,82 +37,38 @@ public final class ProjectorRenderer implements BlockEntityRenderer<ProjectorBlo
 
     @Override
     public void render(ProjectorBlockEntity tile, float partialTick, PoseStack pStack,
-                       MultiBufferSource src, int packedLight, int packedOverlay) {
+                       MultiBufferSource source, int packedLight, int packedOverlay) {
+        pStack.pushPose();
         var tileState = tile.getBlockState();
-        // always update slide state of current and next slide
-        var nextCurrentEntries = tile.getNextCurrentEntries();
-        var nextEntry = nextCurrentEntries.left;
-        if (nextEntry.isPresent()) {
-            var tileNextEntryUUID = nextEntry.get().id();
-            SlideState.getSlide(tileNextEntryUUID);
-        }
-        var currentEntry = nextCurrentEntries.right;
-        if (currentEntry.isPresent()) {
-            pStack.pushPose();
-            var tileColorTransform = tile.getColorTransform();
-            var tileCurrentEntryUUID = currentEntry.get().id();
-            var tileCurrentSlide = SlideState.getSlide(tileCurrentEntryUUID);
-            var tileIconHidden = tileCurrentSlide instanceof IconSlide iconSlide && switch (iconSlide) {
-                case DEFAULT_EMPTY -> tileColorTransform.hideEmptySlideIcon;
-                case DEFAULT_FAILED -> tileColorTransform.hideFailedSlideIcon;
-                case DEFAULT_BLOCKED -> tileColorTransform.hideBlockedSlideIcon;
-                case DEFAULT_LOADING -> tileColorTransform.hideLoadingSlideIcon;
+        // always update slide state whether the projector should be hidden or not
+        var slide = SlideState.getSlide(tile.getImageLocation());
+        if (slide != null) {
+            var tileColorARGB = tile.getColorARGB();
+            var tileColorTransparent = (tileColorARGB & 0xFF000000) == 0;
+            var tilePowered = tileState.getValue(BlockStateProperties.POWERED);
+            var tileIconHidden = slide instanceof IconSlide iconSlide && switch (iconSlide) {
+                case DEFAULT_EMPTY -> tile.getHideEmptySlideIcon();
+                case DEFAULT_FAILED -> tile.getHideFailedSlideIcon();
+                case DEFAULT_BLOCKED -> tile.getHideBlockedSlideIcon();
+                case DEFAULT_LOADING -> tile.getHideLoadingSlideIcon();
             };
-            var tileColorTransparent = (tileColorTransform.color & 0xFF000000) == 0;
-            if (!tileColorTransparent && !tileIconHidden) {
+            if (!tileColorTransparent && !tilePowered && !tileIconHidden) {
                 var last = pStack.last();
-                tile.transformToSlideSpaceMicros(last.pose(), last.normal());
+                var tilePose = new Matrix4f(last.pose());
+                var tileNormal = new Matrix3f(last.normal());
+                tile.transformToSlideSpace(tilePose, tileNormal);
                 var flipped = tileState.getValue(ProjectorBlock.ROTATION).isFlipped();
-                var sizeMicros = tile.getSizeMicros();
-                var scaleSizeMicros = new Vector2d(sizeMicros);
-                switch (currentEntry.get().size()) {
-                    case SlideItem.KeywordSize.COVER -> tileCurrentSlide.getDimension().ifPresent(dim -> {
-                        var scale = Math.max((double) sizeMicros.x / dim.x, (double) sizeMicros.y / dim.y);
-                        scaleSizeMicros.set(scale * dim.x, scale * dim.y);
-                    });
-                    case SlideItem.KeywordSize.CONTAIN,
-                         SlideItem.KeywordSize.AUTO,
-                         SlideItem.KeywordSize.AUTO_AUTO -> tileCurrentSlide.getDimension().ifPresent(dim -> {
-                        var scale = Math.min((double) sizeMicros.x / dim.x, (double) sizeMicros.y / dim.y);
-                        scaleSizeMicros.set(scale * dim.x, scale * dim.y);
-                    });
-                    case SlideItem.AutoValueSize(var value) -> {
-                        var scale = value.getPercentage() / 100D;
-                        scaleSizeMicros.y = scale * sizeMicros.y;
-                        var tileCurrentSlideDim = tileCurrentSlide.getDimension();
-                        tileCurrentSlideDim.ifPresent(dim -> scaleSizeMicros.x = scale * sizeMicros.y * dim.x / dim.y);
-                    }
-                    case SlideItem.ValueAutoSize(var value) -> {
-                        var scale = value.getPercentage() / 100D;
-                        scaleSizeMicros.x = scale * sizeMicros.x;
-                        var tileCurrentSlideDim = tileCurrentSlide.getDimension();
-                        tileCurrentSlideDim.ifPresent(dim -> scaleSizeMicros.y = scale * sizeMicros.x * dim.y / dim.x);
-                    }
-                    case SlideItem.ValueSize(var value) -> {
-                        var scale = value.getPercentage() / 100D;
-                        scaleSizeMicros.x = scale * sizeMicros.x;
-                        var tileCurrentSlideDim = tileCurrentSlide.getDimension();
-                        tileCurrentSlideDim.ifPresent(dim -> scaleSizeMicros.y = scale * sizeMicros.x * dim.y / dim.x);
-                    }
-                    case SlideItem.ValueValueSize(var first, var second) -> {
-                        scaleSizeMicros.x = first.getPercentage() / 100D * sizeMicros.x;
-                        scaleSizeMicros.y = second.getPercentage() / 100D * sizeMicros.y;
-                    }
-                }
-                tileCurrentSlide.render(src, last,
-                        sizeMicros.x, sizeMicros.y, scaleSizeMicros.x, scaleSizeMicros.y,
-                        tileColorTransform.color, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY,
-                        flipped || tileColorTransform.doubleSided, !flipped || tileColorTransform.doubleSided,
+                slide.render(source, tilePose, tileNormal, tile.getDimension(),
+                        tileColorARGB, LightTexture.FULL_BRIGHT, OverlayTexture.NO_OVERLAY,
+                        flipped || tile.getDoubleSided(), !flipped || tile.getDoubleSided(),
                         SlideState.getAnimationTick(), partialTick);
             }
-            pStack.popPose();
         }
         if (tile.hasLevel()) {
-            pStack.pushPose();
             var mc = Minecraft.getInstance();
             var handItems = mc.player == null ? List.of(Items.AIR, Items.AIR) :
                     List.of(mc.player.getMainHandItem().getItem(), mc.player.getOffhandItem().getItem());
-            if (handItems.contains(ModRegistries.PROJECTOR_BLOCK.get().asItem())) {
+            if (handItems.contains(ModRegistries.PROJECTOR.get().asItem())) {
                 var outline = RenderType.outline(InventoryMenu.BLOCK_ATLAS);
                 var outlineSource = mc.renderBuffers().outlineBufferSource();
                 var blockModel = this.blockRenderDispatcher.getBlockModel(tileState);
@@ -120,13 +76,8 @@ public final class ProjectorRenderer implements BlockEntityRenderer<ProjectorBlo
                         pStack.last(), outlineSource.getBuffer(outline), tileState, blockModel,
                         0.0F, 0.0F, 0.0F, packedLight, packedOverlay, ModelData.EMPTY, outline);
             }
-            pStack.popPose();
         }
-    }
-
-    @Override
-    public AABB getRenderBoundingBox(ProjectorBlockEntity blockEntity) {
-        return blockEntity.getRenderBoundingBox();
+        pStack.popPose();
     }
 
     @Override

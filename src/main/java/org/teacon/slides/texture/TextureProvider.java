@@ -25,8 +25,6 @@ public interface TextureProvider extends AutoCloseable {
 
     int getGPUMemorySize();
 
-    String getRecommendedName();
-
     @Override
     void close();
 }

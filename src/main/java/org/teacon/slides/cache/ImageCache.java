@@ -1,24 +1,19 @@
 package org.teacon.slides.cache;
 
-import com.google.common.net.HttpHeaders;
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;
-import net.minecraft.Util;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.Header;
+import org.apache.http.HttpHeaders;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.cache.HttpCacheContext;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.cache.CacheConfig;
 import org.apache.http.impl.client.cache.CachingHttpClients;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.Marker;
-import org.apache.logging.log4j.MarkerManager;
-import org.teacon.content_disposition.ContentDisposition;
+import org.apache.logging.log4j.*;
+import org.teacon.slides.SlideShow;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -26,11 +21,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import javax.imageio.ImageIO;
 import java.io.IOException;
 import java.net.URI;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Map;
-import java.util.Optional;
+import java.nio.file.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 
@@ -39,7 +30,7 @@ import java.util.concurrent.CompletionException;
 @ParametersAreNonnullByDefault
 public final class ImageCache {
 
-    private static final Logger LOGGER = LogManager.getLogger("SlideShow");
+    private static final Logger LOGGER = LogManager.getLogger(SlideShow.class);
     private static final Marker MARKER = MarkerManager.getMarker("Cache");
 
     private static final Path LOCAL_CACHE_PATH = Paths.get("slideshow");
@@ -82,23 +73,12 @@ public final class ImageCache {
     }
 
     @Nonnull
-    public CompletableFuture<Map.Entry<String, byte[]>> getResource(@Nonnull URI location, boolean online) {
+    public CompletableFuture<byte[]> getResource(@Nonnull URI location, boolean online) {
         return CompletableFuture.supplyAsync(() -> {
             final HttpCacheContext context = HttpCacheContext.create();
             try (CloseableHttpResponse response = createResponse(location, context, online)) {
                 try {
-                    Optional<ContentDisposition> dispositionOptional;
-                    try {
-                        dispositionOptional = Optional.ofNullable(response
-                                .getFirstHeader(HttpHeaders.CONTENT_DISPOSITION))
-                                .map(Header::getValue).map(ContentDisposition::parse);
-                    } catch (IllegalArgumentException e) {
-                        dispositionOptional = Optional.empty();
-                    }
-                    ContentType type = ContentType.getLenient(response.getEntity());
-                    byte[] bytes = IOUtils.toByteArray(response.getEntity().getContent());
-                    return Map.entry(dispositionOptional.flatMap(ContentDisposition::getFilename)
-                            .orElseGet(() -> FilenameAllocation.allocateHttpRespName(location, bytes, type)), bytes);
+                    return IOUtils.toByteArray(response.getEntity().getContent());
                 } catch (IOException e) {
                     if (online) {
                         LOGGER.warn(MARKER, "Failed to read bytes from remote source.", e);
@@ -112,7 +92,7 @@ public final class ImageCache {
                 LOGGER.warn(MARKER, "Failed to establish connection.", connError);
                 throw new CompletionException(connError);
             }
-        }, Util.nonCriticalIoPool());
+        });
     }
 
     private CloseableHttpResponse createResponse(URI location, HttpCacheContext context, boolean online) throws IOException {

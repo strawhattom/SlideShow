@@ -6,11 +6,10 @@ import net.minecraft.MethodsReturnNonnullByDefault;
 import org.lwjgl.system.MemoryUtil;
 import org.teacon.slides.renderer.SlideRenderType;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.annotation.ParametersAreNonnullByDefault;
+import javax.annotation.*;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.util.concurrent.CompletionException;
 
 import static org.lwjgl.opengl.GL11C.*;
 import static org.lwjgl.opengl.GL12C.GL_CLAMP_TO_EDGE;
@@ -32,11 +31,10 @@ public final class AnimatedTextureProvider implements TextureProvider {
 
     @Nullable
     private ByteBuffer mFrame;
-    private final String mRecommendedName;
 
     private final int mCPUMemorySize;
 
-    public AnimatedTextureProvider(String name, byte[] data) throws IOException {
+    public AnimatedTextureProvider(byte[] data) {
         try {
             mDecoder = new GIFDecoder(ByteBuffer.wrap(data), gRenderThreadDecoder);
             final int width = mDecoder.getScreenWidth();
@@ -69,10 +67,9 @@ public final class AnimatedTextureProvider implements TextureProvider {
             // no mipmap generation
             glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, mFrame.rewind());
             mRenderType = new SlideRenderType(mTexture);
-            mRecommendedName = name;
-        } catch (IOException e) {
-            this.close();
-            throw e;
+        } catch (Throwable t) {
+            close();
+            throw new CompletionException(t);
         }
     }
 
@@ -123,11 +120,6 @@ public final class AnimatedTextureProvider implements TextureProvider {
     @Override
     public int getGPUMemorySize() {
         return getWidth() * getHeight() * 4;
-    }
-
-    @Override
-    public String getRecommendedName() {
-        return mRecommendedName;
     }
 
     @Override

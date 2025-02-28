@@ -1,0 +1,210 @@
+{
+  "{Accept-Encoding=gzip%2Cdeflate}http://minecraft.scoreboard.capybara-soum.ovh:8080/output_standard.png?t=0": {
+    "request_date": "Thu, 27 Feb 2025 20:21:51 GMT",
+    "response_date": "Thu, 27 Feb 2025 20:21:51 GMT",
+    "status_line": "HTTP/1.1 200 OK",
+    "headers": [
+      "Date: Thu, 27 Feb 2025 20:21:51 GMT",
+      "Content-Type: image/png",
+      "Content-Length: 35338",
+      "Connection: keep-alive",
+      "Last-Modified: Thu, 27 Feb 2025 20:21:03 GMT",
+      "Cache-Control: max-age=14400",
+      "CF-Cache-Status: MISS",
+      "Accept-Ranges: bytes",
+      "Report-To: {\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=JuGHDZ8HiwycaEWair%2FFS9%2Fje5tef6pA7gNxFEqr6pFu%2F52hwyNPjQJR7xoc37%2BU%2FhoBcw1vxGXThW2ekv7QrEfTYGSVPtMSyw4GXnmYUuqOZ8yl2Bu81C%2BR5Ia41yq03pq4W3YT7WmnY51%2BlzhiGsSwGS0yZ4pG7akyK71t7zI2sOQ2SBOiaCpq\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "NEL: {\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "Vary: Accept-Encoding",
+      "Server: cloudflare",
+      "CF-RAY: 918ae23459c0048e-CDG",
+      "alt-svc: h3=\":443\"; ma=86400",
+      "server-timing: cfL4;desc=\"?proto=TCP&rtt=8024&min_rtt=8024&rtt_var=4012&sent=1&recv=3&lost=0&retrans=0&sent_bytes=0&recv_bytes=514&delivery_rate=0&cwnd=249&unsent_bytes=0&cid=0000000000000000&ts=0&x=0\"",
+      "Via: 1.1 localhost (Apache-HttpClient/4.5.13 (cache))"
+    ],
+    "resource": "slideshow/178829dd0514b9cc47325af4c31d16c33508f76c.png",
+    "variant_map": {}
+  },
+  "http://minecraft.scoreboard.capybara-soum.ovh:8080/output_standard.png?t=0": {
+    "request_date": "Thu, 27 Feb 2025 20:21:51 GMT",
+    "response_date": "Thu, 27 Feb 2025 20:21:51 GMT",
+    "status_line": "HTTP/1.1 200 OK",
+    "headers": [
+      "Date: Thu, 27 Feb 2025 20:21:51 GMT",
+      "Content-Type: image/png",
+      "Content-Length: 35338",
+      "Connection: keep-alive",
+      "Last-Modified: Thu, 27 Feb 2025 20:21:03 GMT",
+      "Cache-Control: max-age=14400",
+      "CF-Cache-Status: MISS",
+      "Accept-Ranges: bytes",
+      "Report-To: {\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=JuGHDZ8HiwycaEWair%2FFS9%2Fje5tef6pA7gNxFEqr6pFu%2F52hwyNPjQJR7xoc37%2BU%2FhoBcw1vxGXThW2ekv7QrEfTYGSVPtMSyw4GXnmYUuqOZ8yl2Bu81C%2BR5Ia41yq03pq4W3YT7WmnY51%2BlzhiGsSwGS0yZ4pG7akyK71t7zI2sOQ2SBOiaCpq\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "NEL: {\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "Vary: Accept-Encoding",
+      "Server: cloudflare",
+      "CF-RAY: 918ae23459c0048e-CDG",
+      "alt-svc: h3=\":443\"; ma=86400",
+      "server-timing: cfL4;desc=\"?proto=TCP&rtt=8024&min_rtt=8024&rtt_var=4012&sent=1&recv=3&lost=0&retrans=0&sent_bytes=0&recv_bytes=514&delivery_rate=0&cwnd=249&unsent_bytes=0&cid=0000000000000000&ts=0&x=0\"",
+      "Via: 1.1 localhost (Apache-HttpClient/4.5.13 (cache))"
+    ],
+    "resource": "slideshow/178829dd0514b9cc47325af4c31d16c33508f76c.png",
+    "variant_map": {
+      "{Accept-Encoding=gzip%2Cdeflate}": "{Accept-Encoding=gzip%2Cdeflate}http://minecraft.scoreboard.capybara-soum.ovh:8080/output_standard.png?t=0"
+    }
+  },
+  "{Accept-Encoding=gzip%2Cdeflate}http://minecraft.scoreboard.capybara-soum.ovh:8080/output_standard.png?t=1": {
+    "request_date": "Thu, 27 Feb 2025 20:22:52 GMT",
+    "response_date": "Thu, 27 Feb 2025 20:22:52 GMT",
+    "status_line": "HTTP/1.1 200 OK",
+    "headers": [
+      "Date: Thu, 27 Feb 2025 20:22:52 GMT",
+      "Content-Type: image/png",
+      "Content-Length: 35423",
+      "Connection: keep-alive",
+      "Last-Modified: Thu, 27 Feb 2025 20:22:03 GMT",
+      "Cache-Control: max-age=14400",
+      "CF-Cache-Status: EXPIRED",
+      "Accept-Ranges: bytes",
+      "Report-To: {\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=0N4pRgfksUJW96ICbS9h77SCjnDB1amyD8ep4K0rTaaYnbeEOOQ48QSlykZpj4YDOf0HON0UsdOTdjlH%2Fu4eF%2BUUbKR%2B6TaD42nESJwqKPCvvytFKRoj29VxKDsbXgvH4FmEITFgDWLBmATN%2BkFe6XQiLA010zAd5StcsBORmed0t7S4rABZxlcN\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "NEL: {\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "Vary: Accept-Encoding",
+      "Server: cloudflare",
+      "CF-RAY: 918ae3b06d31048e-CDG",
+      "alt-svc: h3=\":443\"; ma=86400",
+      "server-timing: cfL4;desc=\"?proto=TCP&rtt=7699&min_rtt=6909&rtt_var=2179&sent=30&recv=8&lost=0&retrans=0&sent_bytes=36276&recv_bytes=1028&delivery_rate=5356798&cwnd=249&unsent_bytes=0&cid=0000000000000000&ts=0&x=0\"",
+      "Via: 1.1 localhost (Apache-HttpClient/4.5.13 (cache))"
+    ],
+    "resource": "slideshow/6d87480111ddf816bf1fe4ee8583d37f3973f27c.png",
+    "variant_map": {}
+  },
+  "http://minecraft.scoreboard.capybara-soum.ovh:8080/output_standard.png?t=1": {
+    "request_date": "Thu, 27 Feb 2025 20:22:52 GMT",
+    "response_date": "Thu, 27 Feb 2025 20:22:52 GMT",
+    "status_line": "HTTP/1.1 200 OK",
+    "headers": [
+      "Date: Thu, 27 Feb 2025 20:22:52 GMT",
+      "Content-Type: image/png",
+      "Content-Length: 35423",
+      "Connection: keep-alive",
+      "Last-Modified: Thu, 27 Feb 2025 20:22:03 GMT",
+      "Cache-Control: max-age=14400",
+      "CF-Cache-Status: EXPIRED",
+      "Accept-Ranges: bytes",
+      "Report-To: {\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=0N4pRgfksUJW96ICbS9h77SCjnDB1amyD8ep4K0rTaaYnbeEOOQ48QSlykZpj4YDOf0HON0UsdOTdjlH%2Fu4eF%2BUUbKR%2B6TaD42nESJwqKPCvvytFKRoj29VxKDsbXgvH4FmEITFgDWLBmATN%2BkFe6XQiLA010zAd5StcsBORmed0t7S4rABZxlcN\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "NEL: {\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "Vary: Accept-Encoding",
+      "Server: cloudflare",
+      "CF-RAY: 918ae3b06d31048e-CDG",
+      "alt-svc: h3=\":443\"; ma=86400",
+      "server-timing: cfL4;desc=\"?proto=TCP&rtt=7699&min_rtt=6909&rtt_var=2179&sent=30&recv=8&lost=0&retrans=0&sent_bytes=36276&recv_bytes=1028&delivery_rate=5356798&cwnd=249&unsent_bytes=0&cid=0000000000000000&ts=0&x=0\"",
+      "Via: 1.1 localhost (Apache-HttpClient/4.5.13 (cache))"
+    ],
+    "resource": "slideshow/6d87480111ddf816bf1fe4ee8583d37f3973f27c.png",
+    "variant_map": {
+      "{Accept-Encoding=gzip%2Cdeflate}": "{Accept-Encoding=gzip%2Cdeflate}http://minecraft.scoreboard.capybara-soum.ovh:8080/output_standard.png?t=1"
+    }
+  },
+  "{Accept-Encoding=gzip%2Cdeflate}http://minecraft.scoreboard.capybara-soum.ovh:8080/output_standard.png?t=2": {
+    "request_date": "Thu, 27 Feb 2025 20:24:23 GMT",
+    "response_date": "Thu, 27 Feb 2025 20:24:23 GMT",
+    "status_line": "HTTP/1.1 200 OK",
+    "headers": [
+      "Date: Thu, 27 Feb 2025 20:24:23 GMT",
+      "Content-Type: image/png",
+      "Content-Length: 35434",
+      "Connection: keep-alive",
+      "Last-Modified: Thu, 27 Feb 2025 20:24:02 GMT",
+      "Cache-Control: max-age=14400",
+      "CF-Cache-Status: EXPIRED",
+      "Accept-Ranges: bytes",
+      "Report-To: {\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=MP%2FTG75aQfFsKi9N1W0klFJBBSIsJ2T7EHeGU4338cWfKU2I4wYFvw7n4%2BbSfRTJylR2MBUf9wqDTrGa6glWJ4HZ9%2BVpShdoZfs3YfzdSdZPPLTw6Wz7AQa6aGZxGSg47pRlIpDXQiui2RqCSXxDIpJ8%2FkHgi2s0lV811MSLgvZzwJMaeiBRv8kV\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "NEL: {\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "Vary: Accept-Encoding",
+      "Server: cloudflare",
+      "CF-RAY: 918ae5e92cff048e-CDG",
+      "alt-svc: h3=\":443\"; ma=86400",
+      "server-timing: cfL4;desc=\"?proto=TCP&rtt=8082&min_rtt=6909&rtt_var=1495&sent=58&recv=13&lost=0&retrans=0&sent_bytes=72646&recv_bytes=1542&delivery_rate=5356798&cwnd=249&unsent_bytes=0&cid=0000000000000000&ts=0&x=0\"",
+      "Via: 1.1 localhost (Apache-HttpClient/4.5.13 (cache))"
+    ],
+    "resource": "slideshow/cda31b929ffbc855bafb9c80d3874c87d4a145bb.png",
+    "variant_map": {}
+  },
+  "http://minecraft.scoreboard.capybara-soum.ovh:8080/output_standard.png?t=2": {
+    "request_date": "Thu, 27 Feb 2025 20:24:23 GMT",
+    "response_date": "Thu, 27 Feb 2025 20:24:23 GMT",
+    "status_line": "HTTP/1.1 200 OK",
+    "headers": [
+      "Date: Thu, 27 Feb 2025 20:24:23 GMT",
+      "Content-Type: image/png",
+      "Content-Length: 35434",
+      "Connection: keep-alive",
+      "Last-Modified: Thu, 27 Feb 2025 20:24:02 GMT",
+      "Cache-Control: max-age=14400",
+      "CF-Cache-Status: EXPIRED",
+      "Accept-Ranges: bytes",
+      "Report-To: {\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=MP%2FTG75aQfFsKi9N1W0klFJBBSIsJ2T7EHeGU4338cWfKU2I4wYFvw7n4%2BbSfRTJylR2MBUf9wqDTrGa6glWJ4HZ9%2BVpShdoZfs3YfzdSdZPPLTw6Wz7AQa6aGZxGSg47pRlIpDXQiui2RqCSXxDIpJ8%2FkHgi2s0lV811MSLgvZzwJMaeiBRv8kV\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "NEL: {\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "Vary: Accept-Encoding",
+      "Server: cloudflare",
+      "CF-RAY: 918ae5e92cff048e-CDG",
+      "alt-svc: h3=\":443\"; ma=86400",
+      "server-timing: cfL4;desc=\"?proto=TCP&rtt=8082&min_rtt=6909&rtt_var=1495&sent=58&recv=13&lost=0&retrans=0&sent_bytes=72646&recv_bytes=1542&delivery_rate=5356798&cwnd=249&unsent_bytes=0&cid=0000000000000000&ts=0&x=0\"",
+      "Via: 1.1 localhost (Apache-HttpClient/4.5.13 (cache))"
+    ],
+    "resource": "slideshow/cda31b929ffbc855bafb9c80d3874c87d4a145bb.png",
+    "variant_map": {
+      "{Accept-Encoding=gzip%2Cdeflate}": "{Accept-Encoding=gzip%2Cdeflate}http://minecraft.scoreboard.capybara-soum.ovh:8080/output_standard.png?t=2"
+    }
+  },
+  "{Accept-Encoding=gzip%2Cdeflate}http://minecraft.scoreboard.capybara-soum.ovh:8080/output_standard.png?t=3": {
+    "request_date": "Thu, 27 Feb 2025 20:26:28 GMT",
+    "response_date": "Thu, 27 Feb 2025 20:26:28 GMT",
+    "status_line": "HTTP/1.1 200 OK",
+    "headers": [
+      "Date: Thu, 27 Feb 2025 20:26:28 GMT",
+      "Content-Type: image/png",
+      "Content-Length: 35493",
+      "Connection: keep-alive",
+      "Last-Modified: Thu, 27 Feb 2025 20:26:03 GMT",
+      "Cache-Control: max-age=14400",
+      "CF-Cache-Status: EXPIRED",
+      "Accept-Ranges: bytes",
+      "Report-To: {\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=DFBEWI7tknDLLldIh5sUl%2Bdosin3bvCr%2BHDGQH8%2BPzVJdH8N35Gjpz42V1G%2FwY8e5sGATLtVSXYHquZYJzT%2BunqVCE3H%2FBnJp8FB%2Fy4qPQU63c8l%2BbUs8tan9NPJx6THPW7PnD1HfTpxrUDltHGKx%2Fk5f6MRSXEcNzPOZGKWtT%2BlFbf31OcEWUE9\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "NEL: {\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "Vary: Accept-Encoding",
+      "Server: cloudflare",
+      "CF-RAY: 918ae8f8994b048e-CDG",
+      "alt-svc: h3=\":443\"; ma=86400",
+      "server-timing: cfL4;desc=\"?proto=TCP&rtt=7864&min_rtt=6909&rtt_var=957&sent=86&recv=18&lost=0&retrans=0&sent_bytes=109028&recv_bytes=2056&delivery_rate=5356798&cwnd=249&unsent_bytes=0&cid=0000000000000000&ts=0&x=0\"",
+      "Via: 1.1 localhost (Apache-HttpClient/4.5.13 (cache))"
+    ],
+    "resource": "slideshow/09c7f9b88f585850c42770797ead0e4baa33f6bc.png",
+    "variant_map": {}
+  },
+  "http://minecraft.scoreboard.capybara-soum.ovh:8080/output_standard.png?t=3": {
+    "request_date": "Thu, 27 Feb 2025 20:26:28 GMT",
+    "response_date": "Thu, 27 Feb 2025 20:26:28 GMT",
+    "status_line": "HTTP/1.1 200 OK",
+    "headers": [
+      "Date: Thu, 27 Feb 2025 20:26:28 GMT",
+      "Content-Type: image/png",
+      "Content-Length: 35493",
+      "Connection: keep-alive",
+      "Last-Modified: Thu, 27 Feb 2025 20:26:03 GMT",
+      "Cache-Control: max-age=14400",
+      "CF-Cache-Status: EXPIRED",
+      "Accept-Ranges: bytes",
+      "Report-To: {\"endpoints\":[{\"url\":\"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=DFBEWI7tknDLLldIh5sUl%2Bdosin3bvCr%2BHDGQH8%2BPzVJdH8N35Gjpz42V1G%2FwY8e5sGATLtVSXYHquZYJzT%2BunqVCE3H%2FBnJp8FB%2Fy4qPQU63c8l%2BbUs8tan9NPJx6THPW7PnD1HfTpxrUDltHGKx%2Fk5f6MRSXEcNzPOZGKWtT%2BlFbf31OcEWUE9\"}],\"group\":\"cf-nel\",\"max_age\":604800}",
+      "NEL: {\"success_fraction\":0,\"report_to\":\"cf-nel\",\"max_age\":604800}",
+      "Vary: Accept-Encoding",
+      "Server: cloudflare",
+      "CF-RAY: 918ae8f8994b048e-CDG",
+      "alt-svc: h3=\":443\"; ma=86400",
+      "server-timing: cfL4;desc=\"?proto=TCP&rtt=7864&min_rtt=6909&rtt_var=957&sent=86&recv=18&lost=0&retrans=0&sent_bytes=109028&recv_bytes=2056&delivery_rate=5356798&cwnd=249&unsent_bytes=0&cid=0000000000000000&ts=0&x=0\"",
+      "Via: 1.1 localhost (Apache-HttpClient/4.5.13 (cache))"
+    ],
+    "resource": "slideshow/09c7f9b88f585850c42770797ead0e4baa33f6bc.png",
+    "variant_map": {
+      "{Accept-Encoding=gzip%2Cdeflate}": "{Accept-Encoding=gzip%2Cdeflate}http://minecraft.scoreboard.capybara-soum.ovh:8080/output_standard.png?t=3"
+    }
+  }
+}

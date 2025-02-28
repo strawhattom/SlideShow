@@ -22,8 +22,8 @@ build
 
 # other
 eclipse
-run
-runs
-run-data
+run_client
+run_server
+run_test
+*.txt
 
-repo

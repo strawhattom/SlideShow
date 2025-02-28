@@ -1,15 +1,15 @@
 package org.teacon.slides.slide;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.FieldsAreNonnullByDefault;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.renderer.MultiBufferSource;
-import org.joml.Vector2i;
+import org.joml.Matrix3f;
+import org.joml.Matrix4f;
+import org.joml.Vector2f;
 import org.teacon.slides.renderer.SlideState;
 import org.teacon.slides.texture.TextureProvider;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.Optional;
 
 /**
  * Represents a slide drawable, with immutable storage.
@@ -20,19 +20,22 @@ import java.util.Optional;
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 public sealed interface Slide extends AutoCloseable permits IconSlide, ImageSlide {
-    void render(MultiBufferSource source, PoseStack.Pose pose,
-                int widthMicros, int heightMicros, double scaleWidthMicros, double scaleHeightMicros,
+    void render(MultiBufferSource source, Matrix4f matrix, Matrix3f normal, Vector2f dimension,
                 int color, int light, int overlay, boolean front, boolean back, long tick, float partialTick);
 
     @Override
     void close();
 
-    default Optional<Vector2i> getDimension() {
-        return Optional.empty();
+    default int getWidth() {
+        return 1;
     }
 
-    default String getRecommendedName() {
-        return "";
+    default int getHeight() {
+        return 1;
+    }
+
+    default float getImageAspectRatio() {
+        return Float.NaN;
     }
 
     default int getCPUMemorySize() {
